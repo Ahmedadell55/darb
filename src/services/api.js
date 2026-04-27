@@ -56,90 +56,77 @@ export function extractMsg(e) {
 async function request(method, path, body) {
   const headers = { 'Content-Type': 'application/json' };
   const token = getToken();
-  if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const ctrl  = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
 
   let res;
+
   try {
     res = await fetch(`${BASE_URL}${path}`, {
       method,
       headers,
-      signal: ctrl.signal,
-      body: body !== undefined && !['GET', 'HEAD'].includes(method)
-        ? JSON.stringify(body)
-        : null,
+      signal: controller.signal,
+      body: body && method !== 'GET' ? JSON.stringify(body) : null,
     });
-  } catch (e) {
+  } catch (err) {
     clearTimeout(timer);
-    if (e.name === 'AbortError')
-      throw new Error('انتهت مهلة الطلب — تحقق من الاتصال بالإنترنت');
-    throw new Error('تعذّر الاتصال بالخادم');
+
+    if (err.name === 'AbortError') {
+      throw new Error('انتهت مهلة الاتصال');
+    }
+
+    throw new Error('فشل الاتصال بالخادم');
   }
+
   clearTimeout(timer);
 
+  // =========================
+  // 401 handling (FIXED)
+  // =========================
   if (res.status === 401) {
+    try {
+      // جرّب refresh session الأول (لو بتستخدم Supabase)
+      const { data } = await supabase.auth.refreshSession?.() || {};
+
+      if (data?.session) {
+        return request(method, path, body); // retry
+      }
+    } catch {}
+
+    // لو فشل → logout حقيقي
     setToken(null);
     localStorage.removeItem('darb_user');
-    window.dispatchEvent(new CustomEvent('darb:logout'));
+    window.dispatchEvent(new CustomEvent('auth:logout'));
+
     throw new Error('انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى');
   }
+
   if (!res.ok) {
     let msg = `خطأ ${res.status}`;
-    try { msg = extractMsg(await res.json()); } catch {}
+    try {
+      const data = await res.json();
+      msg = data.detail || msg;
+    } catch {}
     throw new Error(msg);
   }
+
   if (res.status === 204) return { success: true };
-  try { return await res.json(); } catch { return { success: true }; }
+
+  return await res.json();
 }
 
-// ── Form-encoded POST (OAuth2 standard) ─────────────────────
-async function postForm(path, fields) {
-  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-  const token = getToken();
-  if (token) headers['Authorization'] = `Bearer ${token}`;
 
-  const ctrl  = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-
-  let res;
-  try {
-    res = await fetch(`${BASE_URL}${path}`, {
-      method: 'POST',
-      headers,
-      signal: ctrl.signal,
-      body: new URLSearchParams(fields).toString(),
-    });
-  } catch (e) {
-    clearTimeout(timer);
-    if (e.name === 'AbortError')
-      throw new Error('انتهت مهلة الطلب — تحقق من الاتصال بالإنترنت');
-    throw new Error('تعذّر الاتصال بالخادم');
-  }
-  clearTimeout(timer);
-
-  if (res.status === 401) {
-    setToken(null);
-    localStorage.removeItem('darb_user');
-    window.dispatchEvent(new CustomEvent('darb:logout'));
-    throw new Error('انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى');
-  }
-  if (!res.ok) {
-    let msg = `خطأ ${res.status}`;
-    try { msg = extractMsg(await res.json()); } catch {}
-    throw new Error(msg);
-  }
-  try { return await res.json(); } catch { return { success: true }; }
-}
-
-const get   = (path)       => request('GET',    path);
-const post  = (path, body) => request('POST',   path, body !== undefined ? body : {});
-const put   = (path, body) => request('PUT',    path, body !== undefined ? body : {});
-const patch = (path, body) => request('PATCH',  path, body !== undefined ? body : {});
-const del   = (path)       => request('DELETE', path);
-
-// ── Normalise list responses ─────────────────────────────────
+// helpers
+const get   = (p) => request('GET', p);
+const post  = (p, b) => request('POST', p, b);
+const put   = (p, b) => request('PUT', p, b);
+const patch = (p, b) => request('PATCH', p, b);
+const del   = (p) => request('DELETE', p);// ── Normalise list responses ─────────────────────────────────
 function toArray(data) {
   if (Array.isArray(data))          return data;
   if (Array.isArray(data?.items))   return data.items;
