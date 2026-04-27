@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://darb-ai.com/sitemap.xml

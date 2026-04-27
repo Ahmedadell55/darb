@@ -1,0 +1,64 @@
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 200; backdrop-filter: blur(3px); }
+.panel { background: var(--surface); border-radius: var(--radius); width: 680px; max-width: 96vw; max-height: 88vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); overflow: hidden; animation: fadeUp 0.22s ease; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, #1a1a1a, #2d3748); color: white; }
+.title { font-size: 17px; font-weight: 800; }
+.closeBtn { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.15); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.closeBtn:hover { background: rgba(255,255,255,0.3); }
+.tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--bg2); }
+.tab { flex: 1; padding: 11px 8px; font-size: 13px; font-weight: 700; color: var(--muted); border-bottom: 2px solid transparent; transition: all 0.15s; }
+.tab:hover { color: var(--text); }
+.tabActive { color: var(--green-d); border-bottom-color: var(--green-d); background: var(--surface); }
+.body { flex: 1; overflow-y: auto; padding: 16px; }
+.section { display: flex; flex-direction: column; gap: 12px; }
+.sectionHeader { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.sectionIcon { font-size: 18px; }
+.sectionTitle { font-size: 15px; font-weight: 800; color: var(--black); }
+.decisionBanner { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: var(--radius-sm); }
+.decisionIcon { font-size: 24px; }
+.decisionMain { font-size: 16px; font-weight: 800; color: var(--green-d); }
+.decisionSub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.windowList { display: flex; flex-direction: column; gap: 8px; }
+.windowCard { padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--border2); background: var(--surface); cursor: pointer; position: relative; overflow: hidden; transition: all 0.15s; }
+.windowCard:hover { border-color: var(--green-l); }
+.windowSelected { border-color: var(--green-d); box-shadow: 0 0 0 2px rgba(45,90,61,0.15); }
+.windowRec { background: var(--green-bg); }
+.windowLeft { display: flex; flex-direction: column; gap: 2px; }
+.recBadge { font-size: 10px; font-weight: 800; color: #c87f0a; background: #fdf5e6; padding: 2px 8px; border-radius: 20px; width: fit-content; margin-bottom: 2px; }
+.windowTime { font-size: 14px; font-weight: 800; color: var(--black); }
+.windowLabel { font-size: 12px; font-weight: 700; }
+.windowRight { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); text-align: center; }
+.windowTraffic { font-size: 20px; font-weight: 900; font-family: 'Space Mono', monospace; }
+.windowSaving { font-size: 10px; color: var(--green-d); font-weight: 700; }
+.windowBar { height: 3px; background: var(--border2); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.windowFill { height: 100%; border-radius: 2px; transition: width 0.5s; }
+.ecoGrid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.ecoCard { padding: 14px 12px; border-radius: var(--radius-sm); border: 1.5px solid var(--border2); background: var(--surface); cursor: pointer; text-align: center; position: relative; transition: all 0.15s; }
+.ecoCard:hover { border-color: var(--green-l); }
+.ecoSelected { border-color: var(--green-d); box-shadow: 0 0 0 2px rgba(45,90,61,0.15); }
+.ecoRec { background: var(--green-bg); border-color: var(--green-m); }
+.ecoRecBadge { position: absolute; top: -1px; right: -1px; background: var(--green-d); color: white; font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 0 var(--radius-sm) 0 var(--radius-sm); }
+.ecoIcon { font-size: 24px; margin-bottom: 4px; }
+.ecoLabel { font-size: 14px; font-weight: 800; margin-bottom: 10px; }
+.ecoStats { display: flex; justify-content: space-around; margin-bottom: 8px; }
+.ecoStat { display: flex; flex-direction: column; align-items: center; }
+.ecoVal { font-family: 'Space Mono', monospace; font-size: 15px; font-weight: 800; color: var(--green-d); }
+.ecoUnit { font-size: 10px; color: var(--muted); }
+.ecoCo2 { font-size: 11px; color: var(--muted); }
+.ecoToll { font-size: 11px; color: var(--amber); font-weight: 700; margin-top: 3px; }
+.scoreRow { display: flex; gap: 16px; align-items: center; }
+.scoreCircle { position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.scoreNum { position: absolute; font-size: 20px; font-weight: 900; color: var(--green-d); font-family: 'Space Mono', monospace; top: 50%; left: 50%; transform: translate(-50%, -58%); }
+.scoreGrade { position: absolute; font-size: 11px; font-weight: 700; color: var(--muted); top: 50%; left: 50%; transform: translate(-50%, 30%); }
+.scoreStats { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.scoreStat { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 8px; background: var(--bg2); border-radius: 6px; }
+.scoreStat span:first-child { color: var(--muted); }
+.scoreStat span:last-child { font-weight: 700; color: var(--text); font-family: 'Space Mono', monospace; }
+.trendChart { background: var(--bg2); border-radius: var(--radius-sm); padding: 12px; }
+.trendTitle { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 8px; font-family: 'Space Mono', monospace; text-transform: uppercase; }
+.trendBars { display: flex; gap: 4px; align-items: flex-end; height: 52px; }
+.trendBarWrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; justify-content: flex-end; }
+.trendBar { width: 100%; border-radius: 3px 3px 0 0; min-height: 4px; transition: height 0.5s; }
+.trendLabel { font-size: 9px; color: var(--muted); font-family: 'Space Mono', monospace; }
+.tips { display: flex; flex-direction: column; gap: 7px; }
+.tip { display: flex; gap: 10px; align-items: center; background: var(--bg2); border-radius: 8px; padding: 9px 12px; font-size: 13px; color: var(--muted); }
+.tip span:first-child { font-size: 16px; }

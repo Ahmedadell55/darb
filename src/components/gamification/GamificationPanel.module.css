@@ -1,0 +1,54 @@
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 200; }
+.panel { background: var(--surface); border-radius: var(--radius); width: 600px; max-width: 96vw; max-height: 88vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); overflow: hidden; animation: fadeUp 0.22s ease; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: #c87f0a; color: white; }
+.title { font-size: 17px; font-weight: 800; }
+.closeBtn { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.2); color: white; display: flex; align-items: center; justify-content: center; }
+.closeBtn:hover { background: rgba(255,255,255,0.35); }
+.rankCard { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: linear-gradient(135deg, var(--green-d), var(--green-m)); color: white; }
+.rankLeft { display: flex; align-items: center; gap: 12px; }
+.rankAvatar { font-size: 32px; width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.rankName { font-size: 16px; font-weight: 800; }
+.rankLevel { font-size: 13px; font-weight: 700; margin-top: 2px; }
+.rankRight { text-align: center; }
+.rankPts { font-size: 32px; font-weight: 900; font-family: 'Space Mono', monospace; }
+.rankPtsLbl { font-size: 12px; opacity: 0.8; }
+.rankPos { font-size: 13px; font-weight: 700; margin-top: 4px; opacity: 0.9; }
+.progressWrap { padding: 10px 20px 12px; background: var(--bg2); }
+.progressBar { height: 8px; background: var(--border2); border-radius: 4px; overflow: hidden; }
+.progressFill { height: 100%; background: linear-gradient(90deg, var(--green-m), #c87f0a); border-radius: 4px; transition: width 0.5s; }
+.progressLbl { font-size: 11px; color: var(--muted); margin-top: 5px; text-align: center; }
+.tabs { display: flex; border-bottom: 1px solid var(--border); }
+.tab { flex: 1; padding: 12px; font-size: 14px; font-weight: 700; color: var(--muted); border-bottom: 2px solid transparent; }
+.tabActive { color: var(--green-d); border-bottom-color: var(--green-d); }
+.badgeGrid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 16px; overflow-y: auto; }
+.badge { position: relative; padding: 16px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); text-align: center; transition: all 0.15s; }
+.badgeEarned { background: var(--surface); border-color: #c87f0a; box-shadow: 0 0 0 1px rgba(200,127,10,0.2); }
+.badgeLocked { background: var(--bg2); opacity: 0.7; }
+.badgeIcon { font-size: 32px; margin-bottom: 6px; }
+.badgeName { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+.badgeDesc { font-size: 10px; color: var(--muted); line-height: 1.4; margin-bottom: 6px; }
+.badgePts { font-size: 11px; color: #c87f0a; font-weight: 700; }
+.lockOverlay { position: absolute; top: 8px; right: 8px; font-size: 14px; }
+.lbList { overflow-y: auto; flex: 1; padding: 8px 12px; display: flex; flex-direction: column; gap: 6px; }
+.lbRow { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); }
+.lbMe { border-color: #c87f0a; background: #fdf5e6; }
+.lbRank { font-size: 20px; width: 32px; text-align: center; }
+.lbName { flex: 1; font-weight: 700; font-size: 14px; }
+.meTag { font-size: 10px; background: #c87f0a; color: white; padding: 2px 6px; border-radius: 10px; margin-right: 6px; font-weight: 700; }
+.lbLevel { font-size: 12px; font-weight: 700; }
+.lbPts { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--green-d); }
+
+/* ── Missing classes fix ── */
+.leaderboard {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lbAvatar {
+  font-size: 20px;
+  width: 32px;
+  text-align: center;
+}

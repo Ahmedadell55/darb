@@ -1,0 +1,49 @@
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 200; }
+.panel { background: var(--surface); border-radius: var(--radius); width: 740px; max-width: 96vw; max-height: 88vh; display: flex; flex-direction: column; box-shadow: var(--shadow-lg); overflow: hidden; animation: fadeUp 0.22s ease; }
+.header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); background: #0891b2; color: white; }
+.title { font-size: 17px; font-weight: 800; }
+.closeBtn { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.2); color: white; display: flex; align-items: center; justify-content: center; }
+.closeBtn:hover { background: rgba(255,255,255,0.35); }
+.body { display: flex; flex: 1; overflow: hidden; }
+.listCol { width: 360px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; border-left: 1px solid var(--border); }
+.hint { font-size: 11px; color: var(--muted); padding: 6px 4px; display: flex; align-items: center; gap: 4px; }
+.detailCol { flex: 1; padding: 20px; overflow-y: auto; }
+.card { padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all 0.15s; }
+.card:hover { border-color: #0891b2; }
+.cardSelected { border-color: #0891b2; box-shadow: 0 0 0 2px rgba(8,145,178,0.2); }
+.cardTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.cardName { font-weight: 700; font-size: 14px; }
+.cardType { font-size: 11px; color: var(--muted); }
+.cardMeta { display: flex; gap: 12px; font-size: 11px; margin-bottom: 6px; }
+.avail { font-weight: 700; }
+.dist, .price { color: var(--muted); }
+.bar { height: 6px; background: var(--border2); border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+.barFill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.barLabel { font-size: 10px; color: var(--muted); }
+.detailName { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.detailType { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.detailStats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.ds { background: var(--bg2); border-radius: var(--radius-sm); padding: 12px; display: flex; flex-direction: column; align-items: center; }
+.dsVal { font-size: 20px; font-weight: 800; color: var(--green-d); font-family: 'Space Mono', monospace; }
+.dsLbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.mapPreview { border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 12px; }
+.navBtn { width: 100%; padding: 11px; background: var(--green-d); color: white; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.navBtn:hover { background: var(--green-m); }
+.reserveBtn { width: 100%; padding: 11px; background: #0891b2; color: white; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; }
+.reserveBtn:hover { background: #0e7490; }
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px; gap: 12px; font-size: 40px; color: var(--muted); }
+.empty div:last-child { font-size: 14px; }
+
+.price {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── Missing classes fix ── */
+.dist { font-size: 11px; color: var(--muted); }
+.noSel {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 180px;
+  color: var(--muted); font-size: 14px; gap: 8px;
+}

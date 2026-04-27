@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ══════════════════════════════════════════════
+   LIGHT MODE (default)
+══════════════════════════════════════════════ */
+:root {
+  --bg:        #f0ece3;
+  --bg2:       #e8e2d6;
+  --surface:   #faf8f4;
+  --surface2:  #ede9e0;
+  --border:    rgba(45,90,61,0.14);
+  --border2:   #ddd8ce;
+
+  --green-d:   #2d5a3d;
+  --green-m:   #3d7a52;
+  --green-l:   #5a9e6f;
+  --green-xl:  #a8c9b0;
+  --green-bg:  #eaf3ec;
+
+  --black:     #1a1a1a;
+  --text:      #2c2c2c;
+  --text2:     #4a4a42;
+  --muted:     #7a7a72;
+
+  --red:       #c0392b;
+  --red-bg:    #fdf0ee;
+  --amber:     #c87f0a;
+  --amber-bg:  #fdf5e6;
+  --clear:     #2d6a4f;
+  --clear-bg:  #eaf3ec;
+  --blue:      #2563eb;
+  --blue-bg:   #eff6ff;
+
+  --radius:    16px;
+  --radius-sm: 10px;
+  --shadow:    0 2px 16px rgba(45,90,61,0.10);
+  --shadow-lg: 0 8px 40px rgba(45,90,61,0.15);
+  --shadow-xl: 0 20px 60px rgba(45,90,61,0.2);
+
+  --nav-h: 58px;
+  --ticker-h: 32px;
+  --left-w: 268px;
+  --right-w: 292px;
+
+  /* Transition for theme switching */
+  --theme-transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ══════════════════════════════════════════════
+   DARK MODE
+══════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:        #0f1a14;
+  --bg2:       #162010;
+  --surface:   #1a2a1e;
+  --surface2:  #1f3224;
+  --border:    rgba(90,158,111,0.18);
+  --border2:   #2a3f2e;
+
+  --green-d:   #4ade80;
+  --green-m:   #5ced8e;
+  --green-l:   #86efac;
+  --green-xl:  #bbf7d0;
+  --green-bg:  rgba(74,222,128,0.08);
+
+  --black:     #f0f0f0;
+  --text:      #e8f4ea;
+  --text2:     #b8d4bc;
+  --muted:     #6a8a6e;
+
+  --red:       #f87171;
+  --red-bg:    rgba(248,113,113,0.1);
+  --amber:     #fbbf24;
+  --amber-bg:  rgba(251,191,36,0.1);
+  --clear:     #4ade80;
+  --clear-bg:  rgba(74,222,128,0.1);
+  --blue:      #60a5fa;
+  --blue-bg:   rgba(96,165,250,0.1);
+
+  --shadow:    0 2px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+  transition: var(--theme-transition);
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+}
+
+/* Landing page must scroll freely */
+body.page-landing,
+body.page-landing #root {
+  overflow: visible;
+  height: auto;
+  min-height: 100%;
+}
+
+html:has(body.page-landing) {
+  overflow: auto;
+  height: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ══════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pdot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.7); }
+}
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 8px var(--green-d); }
+  50%       { box-shadow: 0 0 20px var(--green-d), 0 0 40px var(--green-bg); }
+}
+/* Path flow animation */
+@keyframes flowDash {
+  0%   { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes onboardSlide {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Common button reset */
+button { font-family: 'Tajawal', sans-serif; cursor: pointer; border: none; background: none; }
+select { font-family: 'Tajawal', sans-serif; }
+input  { font-family: 'Tajawal', sans-serif; }
+
+/* Utility classes */
+.fade-up    { animation: fadeUp 0.25s ease; }
+.slide-in   { animation: slideIn 0.25s ease; }
+.scale-in   { animation: scaleIn 0.2s ease; }
+
+/* Scrollable sidebars */
+.sb-scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface2) 25%, var(--border2) 50%, var(--surface2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--green-d);
+  outline-offset: 2px;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  :root {
+    --left-w: 0px;
+    --right-w: 0px;
+  }
+}
+
+/* ── User location marker pulse ── */
+@keyframes userPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(3.5); opacity: 0; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+/* ── Leaflet map cursor per tool ── */
+.leaflet-container { cursor: grab; }
+.leaflet-container:active { cursor: grabbing; }
+[data-tool="line"]   .leaflet-container { cursor: crosshair; }
+[data-tool="node"]   .leaflet-container { cursor: cell; }
+[data-tool="delete"] .leaflet-container { cursor: not-allowed; }
+[data-tool="ruler"]  .leaflet-container { cursor: crosshair; }
+
+/* ── Road casing shadow fix ── */
+.leaflet-pane.leaflet-overlay-pane svg { overflow: visible; }
+
+/* ── Flow path animation ── */
+@keyframes flowDash {
+  from { stroke-dashoffset: 40; }
+  to   { stroke-dashoffset: 0; }
+}
+.flow-path {
+  animation: flowDash 1.6s linear infinite;
+  stroke-linecap: round;
+}

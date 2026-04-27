@@ -1,0 +1,354 @@
+.nav {
+  height: var(--nav-h);
+  background: var(--surface);
+  border-bottom: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  flex-shrink: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.logoMark {
+  font-size: 22px;
+  animation: float 3s ease infinite;
+}
+
+.logoText {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--green-d);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.logoText em {
+  font-style: normal;
+  color: var(--green-m);
+}
+
+.logoSub {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+}
+
+/* ── Menu group ── */
+.menuGroup {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.menuWrap { position: relative; }
+
+.menuBtn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: none;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.menuBtn:hover, .menuBtnActive {
+  background: var(--surface2);
+  border-color: var(--border2);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  min-width: 200px;
+  padding: 6px;
+  z-index: 2000;
+  animation: dropDown 0.15s ease;
+}
+
+.ddItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  text-align: right;
+  transition: background 0.1s;
+}
+
+.ddItem:hover { background: var(--green-bg); }
+
+.ddItem kbd {
+  margin-right: auto;
+  font-size: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--muted);
+  font-family: monospace;
+}
+
+.ddSep {
+  height: 1px;
+  background: var(--border);
+  margin: 5px 6px;
+}
+
+.ddLabel {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px 2px;
+}
+
+.ddProjectRow {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ddProjectName {
+  flex: 1;
+  font-weight: 600;
+}
+
+.ddProjectMeta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-right: auto;
+}
+
+.ddDelete {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.ddDelete:hover { background: var(--red-bg); color: var(--red); }
+
+/* ── Tools ── */
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  border-radius: 12px;
+  padding: 4px 6px;
+  flex-shrink: 0;
+}
+
+.tool {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 27px;
+  padding: 0 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tool:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.toolActive {
+  background: var(--green-d);
+  color: white;
+}
+
+.toolLabel { font-size: 11px; }
+
+.sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border2);
+  margin: 0 3px;
+}
+
+/* ── Right section ── */
+.right {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fileName {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 130px;
+}
+
+.fileIco { font-size: 13px; }
+
+.fileTxt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unsaved {
+  color: var(--amber);
+  font-size: 10px;
+  animation: pulse 1.5s ease infinite;
+}
+
+.cmdBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  font-size: 12px;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.cmdBtn:hover { background: var(--green-bg); border-color: var(--green-xl); color: var(--green-d); }
+
+.cmdBtn kbd {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.btnRun {
+  height: 30px;
+  padding: 0 16px;
+  background: var(--green-d);
+  color: white;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: opacity 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+.btnRun:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.themeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.themeBtn:hover { background: var(--green-bg); border-color: var(--green-d); }
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.userBtn:hover { background: var(--green-bg); border-color: var(--green-xl); }
+
+.userAvatar { font-size: 16px; }
+.userName { font-size: 12px; font-weight: 700; color: var(--text); }
+.userPlan {
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--green-bg);
+  color: var(--green-d);
+  padding: 1px 6px;
+  border-radius: 100px;
+  border: 1px solid var(--green-xl);
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-2px); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .toolLabel { display: none; }
+  .tool { padding: 0 7px; }
+}
+
+@media (max-width: 900px) {
+  .menuGroup { display: none; }
+  .cmdBtn { display: none; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 10px; gap: 6px; }
+  .logoSub { display: none; }
+  .fileName { display: none; }
+  .tools { gap: 1px; padding: 3px 4px; }
+}
+
+.menuBtnActive {
+  background: var(--surface2);
+  border-color: var(--border2);
+}

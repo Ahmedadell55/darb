@@ -1,0 +1,81 @@
+.appRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  position: relative;
+}
+
+/* ── Collapsible sidebar wrapper ── */
+.sidebarWrap {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  transition: width 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+
+.sidebarWrapCollapsed {
+  width: 0 !important;
+  overflow: hidden;
+}
+
+/* ── Collapse buttons ── */
+.collapseBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 48px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.collapseBtn:hover {
+  background: var(--green-bg);
+  border-color: var(--green-d);
+  color: var(--green-d);
+}
+
+.collapseBtnLeft {
+  left: -10px;
+}
+
+.collapseBtnRight {
+  right: -10px;
+}
+
+/* ── Mobile bottom nav ── */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebarWrap {
+    display: none;
+  }
+}
+
+/* Mobile: add bottom padding for MobileNav */
+@media (max-width: 768px) {
+  .appRoot {
+    padding-bottom: 62px;
+  }
+}

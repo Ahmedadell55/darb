@@ -1,0 +1,24 @@
+.signalGroup { cursor: pointer; }
+.signalGroup:hover .signalBody { filter: brightness(1.2); }
+
+.adaptiveBadge {
+  font-size: 9px;
+  font-weight: 800;
+  fill: #2563eb;
+  font-family: monospace;
+}
+
+.fixedBadge {
+  font-size: 9px;
+  fill: #888;
+  font-family: monospace;
+}
+
+.emergencyCorridor {
+  animation: dashFlow 0.8s linear infinite;
+}
+
+@keyframes dashFlow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -30; }
+}
