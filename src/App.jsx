@@ -5,7 +5,6 @@ import ErrorBoundary from './components/common/ErrorBoundary';
 import LoadingScreen from './components/common/LoadingScreen';
 import Landing from './components/landing/Landing';
 import Navbar from './components/layout/Navbar';
-import MapCanvas from './components/map/MapCanvas';
 import CommandPalette from './components/command/CommandPalette';
 import OnboardingTour from './components/onboarding/OnboardingTour';
 import UserProfile from './components/profile/UserProfile';
@@ -39,8 +38,6 @@ function AppShell() {
   const [modalData, setModalData] = useState(null);
   const [mobileActive, setMobileActive] = useState('map');
 
-  const mapContainerRef = useRef(null);
-  const leafletMapRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const openRunModal = useCallback(() => setModal('run'), [setModal]);
@@ -52,19 +49,6 @@ function AppShell() {
     setModal('saveAs');
   }, [setModal]);
 
-  const handleMapRef = useCallback((ref) => {
-    mapContainerRef.current = ref?.current;
-  }, []);
-
-  const handleLeafletMapRef = useCallback((mapInstance) => {
-    leafletMapRef.current = mapInstance;
-  }, []);
-
-  const getMapCenter = useCallback(() => {
-    if (!leafletMapRef.current) return null;
-    const c = leafletMapRef.current.getCenter();
-    return { lat: c.lat, lng: c.lng };
-  }, []);
 
   const handleImportClick = useCallback(() => {
     fileInputRef.current?.click();
@@ -144,28 +128,7 @@ function AppShell() {
       />
 
       <div className={styles.main}>
-        <MapCanvas
-          nodes={nodes}
-          edges={edges}
-          activeTool={activeTool}
-          zoom={zoom}
-          selectedNode={selectedNode}
-          setSelectedNode={setSelectedNode}
-          selectedEdge={selectedEdge}
-          setSelectedEdge={setSelectedEdge}
-          onMoveNode={moveNode}
-          onAddNode={addNode}
-          onDeleteNode={deleteNode}
-          onDeleteEdge={deleteEdge}
-          onAddEdge={addEdge}
-          onUpdateNode={updateNode}
-          onUpdateEdge={updateEdge}
-          showToast={showToast}
-          theme={theme}
-          onMapRef={handleMapRef}
-          onLeafletMapRef={handleLeafletMapRef}
-        />
-
+       
         <div className={styles.bottomSidebar}>
           <div>
             <button onClick={() => addNode(getMapCenter())}>➕ Add Node</button>
