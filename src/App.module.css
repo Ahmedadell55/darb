@@ -7,75 +7,178 @@
 }
 
 .main {
-  display: flex;
   flex: 1;
   overflow: hidden;
   min-height: 0;
   position: relative;
 }
 
-/* ── Collapsible sidebar wrapper ── */
-.sidebarWrap {
-  position: relative;
-  display: flex;
-  flex-shrink: 0;
-  transition: width 0.28s cubic-bezier(0.4,0,0.2,1);
-}
-
-.sidebarWrapCollapsed {
-  width: 0 !important;
-  overflow: hidden;
-}
-
-/* ── Collapse buttons ── */
-.collapseBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 48px;
+/* ── Bottom Sidebar ── */
+.bottomSidebar {
   background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
+  border-top: 1.5px solid var(--border);
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.bottomTabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bottomTab {
+  padding: 6px 18px;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  background: transparent;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.bottomTab:hover { color: var(--text); background: var(--bg2); }
+.bottomTabActive {
+  color: var(--green-d) !important;
+  background: var(--green-bg) !important;
+  border-bottom: 2px solid var(--green-d);
+}
+
+.bottomContent {
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.2s;
-  box-shadow: var(--shadow);
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
 }
 
-.collapseBtn:hover {
+/* ── Nodes palette ── */
+.nodesPalette {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.nodeTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 10px;
+  background: var(--bg2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  cursor: grab;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  user-select: none;
+  min-width: 58px;
+  flex-shrink: 0;
+}
+.nodeTile:hover {
+  border-color: var(--green-m);
   background: var(--green-bg);
-  border-color: var(--green-d);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(45,90,61,0.2);
+}
+.nodeTile:active { transform: scale(0.94); cursor: grabbing; }
+
+.nodeTileIcon { font-size: 1.2rem; }
+.nodeTileLabel { font-size: 0.62rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+
+/* ── Algo row ── */
+.algoRow {
+  display: flex;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.algoCard {
+  background: var(--bg2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.algoCard:hover { border-color: var(--green-l); }
+.algoSelected { border-color: var(--green-d) !important; background: var(--green-bg) !important; }
+
+.algoName { font-size: 0.8rem; font-weight: 800; color: var(--black); display: block; }
+.algoBadge {
+  font-size: 0.58rem; font-family: 'Space Mono', monospace;
+  padding: 1px 5px; border-radius: 4px;
+  background: var(--green-bg); color: var(--green-d);
+  border: 1px solid var(--green-xl);
+}
+
+/* ── Path config ── */
+.pathConfig {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pathSel {
+  background: var(--bg2);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s;
+  direction: rtl;
+  max-width: 130px;
+}
+.pathSel:focus { border-color: var(--green-m); }
+
+.arrow {
+  color: var(--muted);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.btnRun {
+  background: var(--green-d);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.18s;
+  box-shadow: 0 2px 12px rgba(45,90,61,0.3);
+}
+.btnRun:hover:not(:disabled) { background: var(--green-m); }
+.btnRun:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Algo result ── */
+.algoResult {
+  background: var(--green-bg);
+  border: 1.5px solid var(--green-xl);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--green-d);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.collapseBtnLeft {
-  left: -10px;
-}
-
-.collapseBtnRight {
-  right: -10px;
-}
-
-/* ── Mobile bottom nav ── */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  .main {
-    flex-direction: column;
-  }
-
-  .sidebarWrap {
-    display: none;
-  }
-}
-
-/* Mobile: add bottom padding for MobileNav */
-@media (max-width: 768px) {
-  .appRoot {
-    padding-bottom: 62px;
-  }
+  .appRoot { padding-bottom: 62px; }
+  .bottomContent { flex-wrap: wrap; }
 }
